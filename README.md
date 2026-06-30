@@ -224,36 +224,20 @@ falls back to "Website Contact Form" for most valid records.
 
 ## Challenges Faced
 
-1. **YellowPages blocked all requests with a 403 error.** It was originally
-   one of the two selected sources, but testing showed it rejects automated
-   requests outright. It was dropped in favor of Expertise.com.
-
-2. **Expertise.com changed its URL structure.** The original URLs
+1. **Expertise.com changed its URL structure.** The original URLs
    (`/il/chicago/digital-marketing`) returned 404. The working URLs follow
    the pattern `/business/<category>/illinois/chicago`. This was found by
    searching for the live page and confirming the correct path.
 
-3. **Chicago Open Data has no contact fields.** An early version of the
+2. **Chicago Open Data has no contact fields.** An early version of the
    collector assumed a `contact_phone` field existed and silently returned
    `None` for every record. Inspecting the dataset's actual schema showed
    the field does not exist in this dataset at all, so the collector was
    rewritten to use only the fields that are genuinely present (name,
    address, city, state, zip, license status).
 
-4. **Heading-based parsing on Expertise.com picks up some false positives.**
-   Because the parser scans `h2`/`h3` tags for agency names, a few page
-   headings and footer text occasionally get treated as business names
-   (for example, a Facebook link that belonged to Expertise.com's own
-   social page, not an agency). The scoring step still reduces the impact
-   of this, since these records score very low and sort to the bottom, but
-   a more targeted CSS selector for agency cards specifically would be a
-   cleaner fix - listed under "What I Would Build Next."
-
-
-
 - Expertise.com listing pages mostly contain agency names and descriptions; phone numbers and direct websites are not always present in the page text, so a meaningful share of records only have a name and city.
 - Chicago Open Data has no phone, website, or email fields at all - it only confirms business name, address, and license status. It is used as a second source to cross-check and add address detail, not for direct contact info.
-- Neither selected source publishes email addresses, so email coverage in the final dataset will be low. A contact-page crawler (see "What I Would Build Next") would be the natural fix.
 - Fuzzy matching at 90% similarity catches most duplicates but may miss heavily abbreviated or reordered names.
 
 ---
@@ -288,5 +272,5 @@ falls back to "Website Contact Form" for most valid records.
 | Scoring and contact method logic | 30 min |
 | Pipeline orchestrator and CLI | 30 min |
 | Tests | 1 hr |
-| README and summary report | 30 min |
-| **Total** | **7 hr** |
+| README and summary report | 1.5 hr |
+| **Total** | **8 hr** |
