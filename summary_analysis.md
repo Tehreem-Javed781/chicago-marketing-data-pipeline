@@ -104,39 +104,5 @@ agency).
 
 ---
 
-## 7. Problem-Solving Scenario: Source Structure Change
-
-> *Scenario: A source changes its HTML structure and the scraper stops
-> finding expected fields.*
-
-**1. Identify the cause** - The health monitor checks expected selectors
-on the first page before every run and logs a warning if the selector
-count drops to zero or below the expected minimum.
-
-**2. Prevent the entire pipeline from failing** - Each collector uses
-`safe_get()`, which returns `None` on any request error instead of raising.
-A failure on one page (as happened twice with Expertise.com 404s during
-development) does not stop the rest of the collection.
-
-**3. Detect that data quality has dropped** - The pipeline reports
-`pct_with_website`, `pct_with_phone`, and `pct_with_email` in its summary
-stats. A sudden unexplained drop in any of these is an immediate signal,
-as seen in this run where phone/email coverage was already near zero and
-clearly tied to source limitations rather than a scraper bug.
-
-**4. Update the scraper safely** - Inspect the live page structure, update
-the relevant selector or URL in the collector file, then re-run with
-`--cached` against previously saved raw data to confirm the cleaning and
-scoring logic still behaves correctly before doing a fresh live run.
-
-**5. Prevent incorrect empty data from reaching operations** - The
-`website_valid`, `phone_valid` flags are always set explicitly. Records
-with missing contact info still export with a clear
-`recommended_contact_method` of "No Reliable Contact Method" rather than
-silently appearing as if they had no data at all - so operations always
-knows which records are and are not actionable.
-
----
-
 
 
