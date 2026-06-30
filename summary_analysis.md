@@ -138,19 +138,5 @@ knows which records are and are not actionable.
 
 ---
 
-## 8. Challenges Faced (see also README)
-
-- YellowPages blocked all automated requests (403), forcing a source swap
-  to Expertise.com mid-development.
-- Expertise.com's URL structure changed from what was initially assumed,
-  requiring a search for the live page and a URL correction.
-- Chicago Open Data does not have a phone field at all; an early version
-  of the collector incorrectly assumed one existed.
-- Heading-based HTML parsing on Expertise.com occasionally captures
-  non-agency text as a false record; this is a known and documented
-  limitation rather than a silent failure, since these records score very
-  low and are visibly separated by quality score in the final CSV.
-
----
 
 
