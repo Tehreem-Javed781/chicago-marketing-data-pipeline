@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Expertise.com",
+    "url": "https://www.expertise.com/business/digital-marketing-agencies/illinois/chicago",
+    "date_checked": "2026-06-30",
+    "reachable": true,
+    "card_count": 28,
+    "healthy": true,
+    "issues": []
+  },
+  {
+    "name": "Chicago Open Data API",
+    "url": "https://data.cityofchicago.org/resource/r5kz-chrr.json?$limit=1&$where=upper(business_activity) LIKE '%25MARKETING%25'",
+    "date_checked": "2026-06-30",
+    "reachable": true,
+    "card_count": 1,
+    "healthy": true,
+    "issues": []
+  }
+]

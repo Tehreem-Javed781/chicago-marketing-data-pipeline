@@ -1,0 +1,8 @@
+requests
+beautifulsoup4
+pandas
+phonenumbers
+openpyxl
+fuzzywuzzy
+python-Levenshtein
+pytest
